@@ -42,6 +42,7 @@ function populateTable(jsonData, tableId) {
         checkbox.type = 'checkbox';
         checkbox.disabled = true;
         checkbox.checked = row[key];
+        checkbox.style.backgroundColor = row[key] ? 'green' : ''; // Colorir de verde se for true
         cell.appendChild(checkbox);
       } else {
         cell.innerText = row[key];
@@ -101,24 +102,81 @@ function addTableHeader(tableId, columns) {
   }
 }
 
-// Array com as informações das abas e colunas desejadas
+// Array com as informações das abas e suas colunas
 var tabs = [
-  { name: 'Person', file: 'person', columns: ['Dado', 'Natureza', 'Obrigatório', 'Produto', 'Necessidade', 'País', 'Momento', 'Local', 'Tabela', 'Plataforma', 'Hub', 'Display', 'Sparkle', 'Club', 'Checkout', 'Zendesk'] },
-  { name: 'Address', file: 'address', columns: ['Dado', 'Natureza', 'Obrigatório', 'Produto', 'Necessidade', 'País', 'Momento', 'Local', 'Tabela', 'Plataforma', 'Hub', 'Display', 'Sparkle', 'Club', 'Checkout', 'Zendesk'] },
-  { name: 'Phone', file: 'phone', columns: ['Dado', 'Natureza', 'Obrigatório', 'Produto', 'Necessidade', 'País', 'Momento', 'Local', 'Tabela', 'Plataforma', 'Hub', 'Display', 'Sparkle', 'Club', 'Checkout', 'Zendesk'] }
+  {
+    tabName: 'Person',
+    fileName: 'person',
+    columns: [
+      'Dado',
+      'Natureza',
+      'Obrigatório',
+      'Produto',
+      'Necessidade',
+      'País',
+      'Momento',
+      'Local',
+      'Tabela',
+      'Plataforma',
+      'Hub',
+      'Display',
+      'Sparkle',
+      'Club',
+      'Checkout',
+      'Zendesk'
+    ]
+  },
+  {
+    tabName: 'Address',
+    fileName: 'address',
+    columns: [
+      'Dado',
+      'Natureza',
+      'Obrigatório',
+      'Produto',
+      'Necessidade',
+      'País',
+      'Momento',
+      'Local',
+      'Tabela',
+      'Plataforma',
+      'Hub',
+      'Display',
+      'Sparkle',
+      'Club',
+      'Checkout',
+      'Zendesk'
+    ]
+  },
+  {
+    tabName: 'Phone',
+    fileName: 'phone',
+    columns: [
+      'Dado',
+      'Natureza',
+      'Obrigatório',
+      'Produto',
+      'Necessidade',
+      'País',
+      'Momento',
+      'Local',
+      'Tabela',
+      'Plataforma',
+      'Hub',
+      'Display',
+      'Sparkle',
+      'Club',
+      'Checkout',
+      'Zendesk'
+    ]
+  }
 ];
 
-// Adiciona as abas dinamicamente
+// Adicionar as abas dinamicamente
 for (var i = 0; i < tabs.length; i++) {
   var tab = tabs[i];
-  addTab(tab.name, tab.file, tab.columns);
+  addTab(tab.tabName, tab.fileName, tab.columns);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Código para adicionar as classes de estilo do Bootstrap
-  var firstTab = document.querySelector('#tab-list li:first-child a');
-  firstTab.classList.add('active');
-
-  var firstTabContent = document.querySelector('#tab-content > div:first-child');
-  firstTabContent.classList.add('show', 'active');
-});
+// Exibir a primeira aba por padrão
+showTab(tabs[0].fileName);
