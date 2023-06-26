@@ -1,9 +1,13 @@
-input[type="checkbox"]:disabled:checked::before {
+input[type="checkbox"]:disabled:checked {
+    --checkbox-background-color: green;
+  }
+  
+  input[type="checkbox"]:disabled:checked + label::before {
     content: "";
     display: inline-block;
     width: 14px;
     height: 14px;
-    background-color: green;
+    background-color: var(--checkbox-background-color);
     margin-right: 5px;
     vertical-align: middle;
   }
