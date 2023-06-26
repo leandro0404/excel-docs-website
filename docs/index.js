@@ -10,9 +10,15 @@ function showTab(tabName) {
   // Função para preencher a tabela com base nos dados JSON
   function populateTable(jsonData, tableId) {
     var table = document.getElementById(tableId);
-    var tbody = table.getElementsByTagName('tbody')[0];
   
-    tbody.innerHTML = '';
+    // Verificar se o tbody já existe, caso contrário, criar um
+    var tbody = table.querySelector('tbody');
+    if (!tbody) {
+      tbody = document.createElement('tbody');
+      table.appendChild(tbody);
+    } else {
+      tbody.innerHTML = '';
+    }
   
     for (var i = 0; i < jsonData.length; i++) {
       var row = jsonData[i];
@@ -20,7 +26,21 @@ function showTab(tabName) {
   
       for (var key in row) {
         var cell = document.createElement('td');
-        cell.innerText = row[key];
+  
+        // Verifica se o valor é booleano
+        if (typeof row[key] === 'boolean') {
+          // Cria um checkbox
+          var checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.disabled = true;
+          checkbox.checked = row[key];
+  
+          cell.appendChild(checkbox);
+        } else {
+          // Cria uma célula de texto normal
+          cell.innerText = row[key];
+        }
+  
         tableRow.appendChild(cell);
       }
   
@@ -41,18 +61,15 @@ function showTab(tabName) {
     var tabContent = document.createElement('div');
     tabContent.id = fileName;
     tabContent.className = 'tab';
-    tabContent.innerHTML =
-      '<h2>' + tabName + '</h2>' +
-      '<table id="' + fileName + '-table"></table>';
+    tabContent.innerHTML = `<h2>${tabName}</h2><table id="${fileName}-table"></table>`;
     document.body.appendChild(tabContent);
   
-    var tableId = fileName + '-table';
-    addTableHeader(tableId, columns);
+    addTableHeader(fileName + '-table', columns);
   
     fetch('data/' + fileName + '.json')
-      .then((response) => response.json())
-      .then((data) => {
-        populateTable(data, tableId);
+      .then(response => response.json())
+      .then(data => {
+        populateTable(data, fileName + '-table');
       });
   }
   
@@ -71,72 +88,9 @@ function showTab(tabName) {
   
   // Array com as informações das abas e colunas desejadas
   var tabs = [
-    {
-      name: 'Person',
-      file: 'person',
-      columns: [
-        'Dado',
-        'Natureza',
-        'Obrigatório',
-        'Produto',
-        'Necessidade',
-        'País',
-        'Momento',
-        'Local',
-        'Tabela',
-        'Plataforma',
-        'Hub',
-        'Display',
-        'Sparkle',
-        'Club',
-        'Checkout',
-        'Zendesk',
-      ],
-    },
-    {
-      name: 'Address',
-      file: 'address',
-      columns: [
-        'Dado',
-        'Natureza',
-        'Obrigatório',
-        'Produto',
-        'Necessidade',
-        'País',
-        'Momento',
-        'Local',
-        'Tabela',
-        'Plataforma',
-        'Hub',
-        'Display',
-        'Sparkle',
-        'Club',
-        'Checkout',
-        'Zendesk',
-      ],
-    },
-    {
-      name: 'Phone',
-      file: 'phone',
-      columns: [
-        'Dado',
-        'Natureza',
-        'Obrigatório',
-        'Produto',
-        'Necessidade',
-        'País',
-        'Momento',
-        'Local',
-        'Tabela',
-        'Plataforma',
-        'Hub',
-        'Display',
-        'Sparkle',
-        'Club',
-        'Checkout',
-        'Zendesk',
-      ],
-    },
+    { name: 'Person', file: 'person', columns: ['Dado', 'Natureza', 'Obrigatório', 'Produto', 'Necessidade', 'País', 'Momento', 'Local', 'Tabela', 'Plataforma', 'Hub', 'Display', 'Sparkle', 'Club', 'Checkout', 'Zendesk'] },
+    { name: 'Address', file: 'address', columns: ['Dado', 'Natureza', 'Obrigatório', 'Produto', 'Necessidade', 'País', 'Momento', 'Local', 'Tabela', 'Plataforma', 'Hub', 'Display', 'Sparkle', 'Club', 'Checkout', 'Zendesk'] },
+    { name: 'Phone', file: 'phone', columns: ['Dado', 'Natureza', 'Obrigatório', 'Produto', 'Necessidade', 'País', 'Momento', 'Local', 'Tabela', 'Plataforma', 'Hub', 'Display', 'Sparkle', 'Club', 'Checkout', 'Zendesk'] }
   ];
   
   // Adiciona as abas e carrega os dados dos arquivos JSON
