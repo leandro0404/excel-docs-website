@@ -110,10 +110,11 @@ for (var i = 0; i < tabs.length; i++) {
   addTab(tab.name, tab.file, tab.columns);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Código para adicionar as classes de estilo do Bootstrap
+  var firstTab = document.querySelector('#tab-list li:first-child');
+  firstTab.classList.add('active');
 
-// Código para adicionar as classes de estilo do Bootstrap
-var firstTab = document.querySelector('#tab-list li:first-child');
-firstTab.classList.add('active');
-
-var firstTabContent = document.querySelector('#tab-content > div:first-child');
-firstTabContent.classList.add('show', 'active');
+  var firstTabContent = document.querySelector('#tab-content > div:first-child');
+  firstTabContent.classList.add('show', 'active');
+});
