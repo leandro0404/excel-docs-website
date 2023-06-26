@@ -52,31 +52,6 @@
             </thead>
             <tbody>
                 <!-- Dados do arquivo person.json -->
-                <script src="data/person.json"></script>
-                <script>
-                    var jsonData = JSON.parse(data);
-                    for (var i = 0; i < jsonData.length; i++) {
-                        var row = jsonData[i];
-                        var tableRow = document.createElement('tr');
-                        tableRow.innerHTML = '<td>' + row['Dado'] + '</td>' +
-                            '<td>' + row['Natureza'] + '</td>' +
-                            '<td>' + row['Obrigatório'] + '</td>' +
-                            '<td>' + row['Produto'] + '</td>' +
-                            '<td>' + row['Necessidade'] + '</td>' +
-                            '<td>' + row['País'] + '</td>' +
-                            '<td>' + row['Momento'] + '</td>' +
-                            '<td>' + row['Local'] + '</td>' +
-                            '<td>' + row['Tabela'] + '</td>' +
-                            '<td>' + row['Plataforma'] + '</td>' +
-                            '<td>' + row['Hub'] + '</td>' +
-                            '<td>' + row['Display'] + '</td>' +
-                            '<td>' + row['Sparkle'] + '</td>' +
-                            '<td>' + row['Club'] + '</td>' +
-                            '<td>' + row['Checkout'] + '</td>' +
-                            '<td>' + row['Zendesk'] + '</td>';
-                        document.getElementById('person').getElementsByTagName('tbody')[0].appendChild(tableRow);
-                    }
-                </script>
             </tbody>
         </table>
     </div>
@@ -96,5 +71,49 @@
             <!-- Conteúdo do arquivo phone.json -->
         </table>
     </div>
+
+    <script>
+        // Carregar arquivo person.json
+        fetch('data/person.json')
+          .then(response => response.json())
+          .then(data => {
+            var jsonData = data;
+            for (var i = 0; i < jsonData.length; i++) {
+              var row = jsonData[i];
+              var tableRow = document.createElement('tr');
+              tableRow.innerHTML = '<td>' + row['Dado'] + '</td>' +
+                '<td>' + row['Natureza'] + '</td>' +
+                '<td>' + row['Obrigatório'] + '</td>' +
+                '<td>' + row['Produto'] + '</td>' +
+                '<td>' + row['Necessidade'] + '</td>' +
+                '<td>' + row['País'] + '</td>' +
+                '<td>' + row['Momento'] + '</td>' +
+                '<td>' + row['Local'] + '</td>' +
+                '<td>' + row['Tabela'] + '</td>' +
+                '<td>' + row['Plataforma'] + '</td>' +
+                '<td>' + row['Hub'] + '</td>' +
+                '<td>' + row['Display'] + '</td>' +
+                '<td>' + row['Sparkle'] + '</td>' +
+                '<td>' + row['Club'] + '</td>' +
+                '<td>' + row['Checkout'] + '</td>' +
+                '<td>' + row['Zendesk'] + '</td>';
+              document.getElementById('person').getElementsByTagName('tbody')[0].appendChild(tableRow);
+            }
+          });
+
+        // Carregar arquivo address.json
+        fetch('data/address.json')
+          .then(response => response.json())
+          .then(data => {
+            // Código para popular a tabela de endereços
+          });
+
+        // Carregar arquivo phone.json
+        fetch('data/phone.json')
+          .then(response => response.json())
+          .then(data => {
+            // Código para popular a tabela de telefones
+          });
+    </script>
 </body>
 </html>
