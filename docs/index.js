@@ -109,3 +109,11 @@ for (var i = 0; i < tabs.length; i++) {
   var tab = tabs[i];
   addTab(tab.name, tab.file, tab.columns);
 }
+
+
+// Código para adicionar as classes de estilo do Bootstrap
+var firstTab = document.querySelector('#tab-list li:first-child');
+firstTab.classList.add('active');
+
+var firstTabContent = document.querySelector('#tab-content > div:first-child');
+firstTabContent.classList.add('show', 'active');
