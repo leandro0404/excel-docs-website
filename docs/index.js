@@ -57,15 +57,19 @@ function populateTable(jsonData, tableId) {
   table.appendChild(tbody);
 }
 
-
 // Função para adicionar uma nova aba e carregar os dados do respectivo arquivo JSON
 function addTab(tabName, fileName, columns) {
   var tabList = document.getElementById('tab-list');
-  var tabButton = document.createElement('button');
-  tabButton.innerText = tabName;
-  tabButton.onclick = function () {
+  var tabButton = document.createElement('li');
+  tabButton.className = 'nav-item';
+  var link = document.createElement('a');
+  link.className = 'nav-link';
+  link.innerText = tabName;
+  link.href = '#' + fileName;
+  link.onclick = function () {
     showTab(fileName);
   };
+  tabButton.appendChild(link);
   tabList.appendChild(tabButton);
 
   var tabContent = document.createElement('div');
@@ -112,7 +116,7 @@ for (var i = 0; i < tabs.length; i++) {
 
 document.addEventListener('DOMContentLoaded', function() {
   // Código para adicionar as classes de estilo do Bootstrap
-  var firstTab = document.querySelector('#tab-list li:first-child');
+  var firstTab = document.querySelector('#tab-list li:first-child a');
   firstTab.classList.add('active');
 
   var firstTabContent = document.querySelector('#tab-content > div:first-child');
