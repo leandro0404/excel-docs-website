@@ -1,4 +1,3 @@
-.checkbox-container input[type="checkbox"]:checked + .checkmark {
+input[type="checkbox"]:disabled:checked {
     background-color: green;
   }
-  
