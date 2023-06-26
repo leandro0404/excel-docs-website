@@ -4,7 +4,7 @@ import json
 import os
 
 # Caminho para o arquivo demo.xlsx
-file_path = 'data/demo.xlsx'
+file_path = 'docs/data/demo.xlsx'
 
 # Carregar o arquivo Excel
 xls = pd.ExcelFile(file_path)
@@ -24,6 +24,6 @@ for sheet_name in ['person', 'address', 'phone']:
     json_data = json.dumps(sheet_data)
     
     # Salvar o JSON em um arquivo na pasta "data"
-    file_name = 'data/' + sheet_name + '.json'
+    file_name = 'docs/data/' + sheet_name + '.json'
     with open(file_name, 'w') as file:
         file.write(json_data)
