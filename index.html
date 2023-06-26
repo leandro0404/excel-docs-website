@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dados JSON</title>
+    <style>
+        .tab {
+            display: none;
+        }
+    </style>
+    <script>
+        // Função para exibir a aba selecionada e ocultar as demais
+        function showTab(tabName) {
+            var tabs = document.getElementsByClassName('tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = 'none';
+            }
+            document.getElementById(tabName).style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <h1>Dados JSON</h1>
+    <ul>
+        <li><button onclick="showTab('person')">Person</button></li>
+        <li><button onclick="showTab('address')">Address</button></li>
+        <li><button onclick="showTab('phone')">Phone</button></li>
+    </ul>
+
+    <!-- Conteúdo da aba "Person" -->
+    <div id="person" class="tab">
+        <h2>Person</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dado</th>
+                    <th>Natureza</th>
+                    <th>Obrigatório</th>
+                    <th>Produto</th>
+                    <th>Necessidade</th>
+                    <th>País</th>
+                    <th>Momento</th>
+                    <th>Local</th>
+                    <th>Tabela</th>
+                    <th>Plataforma</th>
+                    <th>Hub</th>
+                    <th>Display</th>
+                    <th>Sparkle</th>
+                    <th>Club</th>
+                    <th>Checkout</th>
+                    <th>Zendesk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dados do arquivo person.json -->
+                <script src="data/person.json"></script>
+                <script>
+                    var jsonData = JSON.parse(data);
+                    for (var i = 0; i < jsonData.length; i++) {
+                        var row = jsonData[i];
+                        var tableRow = document.createElement('tr');
+                        tableRow.innerHTML = '<td>' + row['Dado'] + '</td>' +
+                            '<td>' + row['Natureza'] + '</td>' +
+                            '<td>' + row['Obrigatório'] + '</td>' +
+                            '<td>' + row['Produto'] + '</td>' +
+                            '<td>' + row['Necessidade'] + '</td>' +
+                            '<td>' + row['País'] + '</td>' +
+                            '<td>' + row['Momento'] + '</td>' +
+                            '<td>' + row['Local'] + '</td>' +
+                            '<td>' + row['Tabela'] + '</td>' +
+                            '<td>' + row['Plataforma'] + '</td>' +
+                            '<td>' + row['Hub'] + '</td>' +
+                            '<td>' + row['Display'] + '</td>' +
+                            '<td>' + row['Sparkle'] + '</td>' +
+                            '<td>' + row['Club'] + '</td>' +
+                            '<td>' + row['Checkout'] + '</td>' +
+                            '<td>' + row['Zendesk'] + '</td>';
+                        document.getElementById('person').getElementsByTagName('tbody')[0].appendChild(tableRow);
+                    }
+                </script>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Conteúdo da aba "Address" -->
+    <div id="address" class="tab">
+        <h2>Address</h2>
+        <table>
+            <!-- Conteúdo do arquivo address.json -->
+        </table>
+    </div>
+
+    <!-- Conteúdo da aba "Phone" -->
+    <div id="phone" class="tab">
+        <h2>Phone</h2>
+        <table>
+            <!-- Conteúdo do arquivo phone.json -->
+        </table>
+    </div>
+</body>
+</html>
