@@ -27,13 +27,12 @@ jobs:
         run: |
           python convert.py
 
-      - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git remote set-url origin https://github.com/${{ github.repository }}
           git add .
-          git commit -m ":rocket: adding generated JSON files"
+          git commit -m ":rocket: adding files json" || exit 0
           git push
 
