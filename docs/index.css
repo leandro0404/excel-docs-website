@@ -11,4 +11,10 @@ input[type="checkbox"]:disabled:checked {
     margin-right: 5px;
     vertical-align: middle;
   }
-  
+
+
+.table th,
+.table td {
+  border-right: 1px solid #ddd;
+}
+
