@@ -1,10 +1,4 @@
-/* Adiciona linhas separando as colunas da tabela */
-.table th,
-.table td {
-  border-right: 1px solid #ddd;
-}
-
-/* Colorir de verde os dados que forem verdadeiros */
-.table td input[type="checkbox"]:checked {
-  background-color: #c3e6cb; /* Cor de fundo verde */
-}
+.checkbox-container input[type="checkbox"]:checked + .checkmark {
+    background-color: green;
+  }
+  
