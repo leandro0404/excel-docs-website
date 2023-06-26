@@ -13,8 +13,12 @@ input[type="checkbox"]:disabled:checked {
   }
 
 
-.table th,
-.table td {
-  border-right: 1px solid #ddd;
+.table td,
+.table th {
+  border: 1px solid #dee2e6;
+}
+
+.table th {
+  background-color: #f8f9fa;
 }
 
