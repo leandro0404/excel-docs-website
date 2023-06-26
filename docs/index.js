@@ -7,6 +7,7 @@ function showTab(tabName) {
   document.getElementById(tabName).style.display = 'block';
 }
 
+// Função para preencher a tabela com base nos dados JSON
 function populateTable(jsonData, tableId) {
   var table = document.getElementById(tableId);
 
@@ -15,7 +16,19 @@ function populateTable(jsonData, tableId) {
     table.removeChild(table.firstChild);
   }
 
+  var thead = document.createElement('thead');
   var tbody = document.createElement('tbody');
+
+  var headerRow = document.createElement('tr');
+  var columns = Object.keys(jsonData[0]);
+
+  for (var i = 0; i < columns.length; i++) {
+    var th = document.createElement('th');
+    th.innerText = columns[i];
+    headerRow.appendChild(th);
+  }
+
+  thead.appendChild(headerRow);
 
   for (var i = 0; i < jsonData.length; i++) {
     var row = jsonData[i];
@@ -23,13 +36,24 @@ function populateTable(jsonData, tableId) {
 
     for (var key in row) {
       var cell = document.createElement('td');
-      cell.innerText = row[key];
+
+      if (typeof row[key] === 'boolean') {
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.disabled = true;
+        checkbox.checked = row[key];
+        cell.appendChild(checkbox);
+      } else {
+        cell.innerText = row[key];
+      }
+
       tableRow.appendChild(cell);
     }
 
     tbody.appendChild(tableRow);
   }
 
+  table.appendChild(thead);
   table.appendChild(tbody);
 }
 
