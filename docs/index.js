@@ -7,12 +7,15 @@ function showTab(tabName) {
   document.getElementById(tabName).style.display = 'block';
 }
 
-// Função para preencher a tabela com base nos dados JSON
 function populateTable(jsonData, tableId) {
   var table = document.getElementById(tableId);
-  var tbody = table.getElementsByTagName('tbody')[0];
 
-  tbody.innerHTML = '';
+  // Remove o conteúdo existente da tabela
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+
+  var tbody = document.createElement('tbody');
 
   for (var i = 0; i < jsonData.length; i++) {
     var row = jsonData[i];
@@ -20,25 +23,16 @@ function populateTable(jsonData, tableId) {
 
     for (var key in row) {
       var cell = document.createElement('td');
-      var value = row[key];
-
-      // Verifica se o valor é booleano para adicionar um checkbox
-      if (typeof value === 'boolean') {
-        var checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.disabled = true;
-        checkbox.checked = value;
-        cell.appendChild(checkbox);
-      } else {
-        cell.innerText = value;
-      }
-
+      cell.innerText = row[key];
       tableRow.appendChild(cell);
     }
 
     tbody.appendChild(tableRow);
   }
+
+  table.appendChild(tbody);
 }
+
 
 // Função para adicionar uma nova aba e carregar os dados do respectivo arquivo JSON
 function addTab(tabName, fileName, columns) {
