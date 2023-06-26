@@ -36,3 +36,4 @@ jobs:
           git add .
           git commit -m ":rocket: adding generated JSON files"
           git push
+
